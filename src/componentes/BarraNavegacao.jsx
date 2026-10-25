@@ -7,7 +7,7 @@ import { cn } from "../lib/utilitarios";
 const links = [
   { to: "/", label: "Início" },
   { to: "/sobre", label: "Sobre" },
-  // { to: "/instituicoes", label: "Instituições" },
+  { to: "/instituicoes", label: "Instituições" },
   // { to: "/explorar", label: "Explorar" },
   // { to: "/contato", label: "Contato" },
 ];
