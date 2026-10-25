@@ -9,7 +9,7 @@ const links = [
   { to: "/sobre", label: "Sobre" },
   { to: "/instituicoes", label: "Instituições" },
   { to: "/explorar", label: "Explorar" },
-  // { to: "/contato", label: "Contato" },
+  { to: "/contato", label: "Contato" },
 ];
 
 export const BarraNavegacao = () => {
