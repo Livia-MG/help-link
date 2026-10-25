@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 import { MapPin, ArrowRight } from "lucide-react";
-import { categoryLabels } from "../dados/ongs";
+import { useCatalogo } from "../hooks/useCatalogo";
 
 export const CartaoOng = ({ ong }) => {
+  const { categoryLabels } = useCatalogo();
   return (
     <article className="group bg-card rounded-2xl overflow-hidden border border-border shadow-card hover:shadow-card-hover transition-base hover:-translate-y-1">
       <div className="aspect-[16/10] overflow-hidden bg-muted">

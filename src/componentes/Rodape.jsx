@@ -21,6 +21,8 @@ export const Rodape = () => (
           <li><Link to="/sobre" className="hover:text-primary">Sobre nós</Link></li>
           <li><Link to="/sos" className="hover:text-sos">S.O.S</Link></li>
           <li><Link to="/contato" className="hover:text-primary">Contato</Link></li>
+          <li><Link to="/admin/login" className="hover:text-primary">Administração</Link></li>
+          <li><Link to="/solicitar-instituicao" className="hover:text-primary">Solicitar inclusão de ONG</Link></li>
         </ul>
       </div>
       <div>

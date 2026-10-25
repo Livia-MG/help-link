@@ -1,17 +1,20 @@
 import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { Estrutura } from "../componentes/Estrutura";
 import { CartaoOng } from "../componentes/CartaoOng";
-import { ongs, categoryLabels } from "../dados/ongs";
+import { useCatalogo } from "../hooks/useCatalogo";
+import { EstadoConsulta } from "../componentes/EstadoConsulta";
 
 const Instituicoes = () => {
+  const { ongs, categoryLabels, carregando, erro, tentarNovamente } = useCatalogo();
   const [query, setQuery] = useState("");
   const [active, setActive] = useState("all");
   const [neighborhood, setNeighborhood] = useState("all");
 
   const neighborhoods = useMemo(
     () => ["all", ...Array.from(new Set(ongs.map((o) => o.neighborhood)))],
-    []
+    [ongs]
   );
 
   const filtered = ongs.filter((o) => {
@@ -41,6 +44,7 @@ const Instituicoes = () => {
             Busque ONGs por nome, categoria ou bairro em Barretos.
           </p>
 
+          <Link to="/solicitar-instituicao" className="mt-5 inline-flex rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground">Solicitar inclusão de uma instituição</Link>
           <div className="mt-7 bg-card rounded-2xl shadow-card border border-border p-3 flex flex-col md:flex-row gap-2">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
@@ -103,6 +107,8 @@ const Instituicoes = () => {
       </section>
 
       <section className="container py-12">
+        <EstadoConsulta carregando={carregando} erro={erro} tentarNovamente={tentarNovamente} />
+        {!carregando && !erro && <>
         <p className="text-sm text-muted-foreground mb-6">
           {filtered.length}{" "}
           {filtered.length === 1
@@ -121,6 +127,7 @@ const Instituicoes = () => {
             ))}
           </div>
         )}
+        </>}
       </section>
     </Estrutura>
   );

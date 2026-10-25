@@ -15,12 +15,11 @@ import {
   X,
 } from "lucide-react";
 import { Estrutura } from "../componentes/Estrutura";
-import { categoryLabels, ongs } from "../dados/ongs";
+import { useCatalogo } from "../hooks/useCatalogo";
+import { EstadoConsulta } from "../componentes/EstadoConsulta";
 import { cn } from "../lib/utilitarios";
 
 const BARRETOS_CENTER = [-20.557, -48.567];
-
-const categoryOrder = ["animais", "alimentos", "saude", "criancas", "idosos", "pessoas"];
 
 const categoryColors = {
   animais: "#f97316",
@@ -85,6 +84,7 @@ const MapFocus = ({ selectedOng }) => {
 };
 
 const OngMarker = ({ ong, highlighted, selected, onSelect }) => {
+  const { categoryLabels } = useCatalogo();
   const markerRef = useRef(null);
   const mainCategory = ong.categories[0];
 
@@ -147,6 +147,7 @@ const ExploreMap = ({ filteredOngs, hoveredId, selectedId, onSelect }) => {
 };
 
 const ExploreCard = ({ ong, selected, onHover, onLeave, onSelect }) => {
+  const { categoryLabels } = useCatalogo();
   const mainCategory = ong.categories[0];
   const color = categoryColors[mainCategory] ?? categoryColors.pessoas;
 
@@ -244,6 +245,7 @@ const ExploreCard = ({ ong, selected, onHover, onLeave, onSelect }) => {
 };
 
 const Explorar = () => {
+  const { ongs, categorias, categoryLabels, carregando, erro, tentarNovamente } = useCatalogo();
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [onlyVolunteers, setOnlyVolunteers] = useState(false);
@@ -274,7 +276,7 @@ const Explorar = () => {
 
       return matchesQuery && matchesCategory && matchesVolunteers && matchesCertificate;
     });
-  }, [activeCategory, onlyCertificate, onlyVolunteers, query]);
+  }, [ongs, categoryLabels, activeCategory, onlyCertificate, onlyVolunteers, query]);
 
   const hasFilters = query || activeCategory !== "all" || onlyVolunteers || onlyCertificate;
 
@@ -365,7 +367,7 @@ const Explorar = () => {
               >
                 Todas
               </button>
-              {categoryOrder.map((category) => (
+              {categorias.map(({ id: category }) => (
                 <button
                   key={category}
                   type="button"
@@ -391,6 +393,8 @@ const Explorar = () => {
       </section>
 
       <section className="container py-8">
+        <EstadoConsulta carregando={carregando} erro={erro} tentarNovamente={tentarNovamente} />
+        {!carregando && !erro && <>
         <div className="grid gap-6 lg:grid-cols-[minmax(0,35fr)_minmax(0,65fr)]">
           <div className="space-y-4">
             <div className="flex items-center justify-between gap-3">
@@ -444,6 +448,7 @@ const Explorar = () => {
             onSelect={setSelectedId}
           />
         </div>
+        </>}
       </section>
     </Estrutura>
   );

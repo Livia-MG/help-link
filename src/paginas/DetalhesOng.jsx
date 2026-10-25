@@ -1,11 +1,31 @@
 import { Link, useParams } from "react-router-dom";
 import { ArrowLeft, MapPin, Phone, Navigation, HandHeart, Check } from "lucide-react";
 import { Estrutura } from "../componentes/Estrutura";
-import { ongs, categoryLabels } from "../dados/ongs";
+import { useCatalogo } from "../hooks/useCatalogo";
+import { useConsulta } from "../hooks/useConsulta";
+import { EstadoConsulta } from "../componentes/EstadoConsulta";
 
 const DetalhesOng = () => {
   const { id } = useParams();
-  const ong = ongs.find((o) => o.id === id);
+  const catalogo = useCatalogo();
+  const { categoryLabels } = catalogo;
+  const consulta = useConsulta(`/api/ongs/${encodeURIComponent(id)}`);
+  const ong = consulta.dados;
+  const carregando = consulta.carregando || catalogo.carregando;
+  const erro = consulta.erro || catalogo.erro;
+
+  if (carregando || (erro && erro.status !== 404)) {
+    return (
+      <Estrutura>
+        <div className="container py-12">
+          <EstadoConsulta carregando={carregando} erro={erro} tentarNovamente={() => {
+            consulta.tentarNovamente();
+            if (catalogo.erro) catalogo.tentarNovamente();
+          }} />
+        </div>
+      </Estrutura>
+    );
+  }
 
   if (!ong) {
     return (
@@ -46,7 +66,7 @@ const DetalhesOng = () => {
           <div>
             <div className="flex flex-wrap gap-1.5 mb-3">
               {ong.categories.map((c) => (
-                <div className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-primary-soft text-primary">
+                <div key={c} className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold bg-primary-soft text-primary">
                   {categoryLabels[c]}
                 </div>
               ))}

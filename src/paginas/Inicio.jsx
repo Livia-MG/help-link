@@ -4,7 +4,8 @@ import { HandHeart, ArrowRight, Search } from "lucide-react";
 import { Estrutura } from "../componentes/Estrutura";
 import { IconeLogo } from "../componentes/IconeLogo";
 import { CartaoOng } from "../componentes/CartaoOng";
-import { ongs } from "../dados/ongs";
+import { useCatalogo } from "../hooks/useCatalogo";
+import { EstadoConsulta } from "../componentes/EstadoConsulta";
 
 const heroSlides = [
   {
@@ -48,6 +49,7 @@ const stats = [
 ];
 
 const Inicio = () => {
+  const { ongs, carregando, erro, tentarNovamente } = useCatalogo();
   const featured = ongs.slice(0, 3);
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -178,9 +180,11 @@ const Inicio = () => {
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <EstadoConsulta carregando={carregando} erro={erro} tentarNovamente={tentarNovamente} />
+        {!carregando && !erro && featured.length === 0 && <p>Nenhuma instituição cadastrada.</p>}
+        {!carregando && !erro && <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {featured.map((o) => <CartaoOng key={o.id} ong={o} />)}
-        </div>
+        </div>}
       </section>
 
       {/* IMPACT BANNER */}
