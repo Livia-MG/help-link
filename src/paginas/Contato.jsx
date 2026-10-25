@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Mail, Phone, MapPin, Send, Check } from "lucide-react";
 import { Estrutura } from "../componentes/Estrutura";
 import { toast } from "sonner";
@@ -131,6 +132,7 @@ const Contato = () => {
             />
           </div>
 
+          <p className="text-sm leading-relaxed text-muted-foreground">Usaremos seu nome, e-mail e mensagem para responder ao contato. Não envie documentos, dados de saúde ou informações pessoais de beneficiários. Consulte a <Link to="/politica-de-privacidade" className="text-primary underline">política de privacidade</Link> e os <Link to="/termos-de-uso" className="text-primary underline">termos de uso</Link>.</p>
           <button
             type="submit"
             disabled={isSubmitting}

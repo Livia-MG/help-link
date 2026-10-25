@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import { MapPin, Mail, Phone } from "lucide-react";
 import { IconeLogo } from "./IconeLogo";
+import { usePrivacidade } from "../hooks/usePrivacidade";
 
-export const Rodape = () => (
+export const Rodape = () => {
+  const { abrirPreferencias } = usePrivacidade();
+  return (
   <footer className="border-t border-border bg-secondary/40 mt-20">
     <div className="container py-12 grid md:grid-cols-4 gap-8">
       <div className="md:col-span-2 space-y-3">
@@ -34,8 +37,11 @@ export const Rodape = () => (
         </ul>
       </div>
     </div>
-    <div className="border-t border-border py-5 text-center text-xs text-muted-foreground">
+    <div className="container mb-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 text-sm text-muted-foreground"><Link to="/termos-de-uso" className="hover:text-primary underline">Termos de uso</Link><Link to="/politica-de-privacidade" className="hover:text-primary underline">Política de privacidade</Link><Link to="/politica-de-cookies" className="hover:text-primary underline">Política de cookies</Link><button onClick={abrirPreferencias} className="hover:text-primary underline">Gerenciar cookies</button></div>
+    <div className="border-t border-border px-5 py-5 pb-16 text-center text-xs text-muted-foreground">
+      <p className="mb-2">Protótipo acadêmico de TCC · ADS, SENAI Barretos. Não é um serviço oficial da instituição de ensino.</p>
       © {new Date().getFullYear()} Help Link · Toda ajuda começa com um clique.
     </div>
   </footer>
-);
+  );
+};

@@ -4,6 +4,7 @@ import { Estrutura } from "../componentes/Estrutura";
 import { useCatalogo } from "../hooks/useCatalogo";
 import { useConsulta } from "../hooks/useConsulta";
 import { EstadoConsulta } from "../componentes/EstadoConsulta";
+import { MapaComPrivacidade } from "../componentes/MapaComPrivacidade";
 
 const DetalhesOng = () => {
   const { id } = useParams();
@@ -110,12 +111,14 @@ const DetalhesOng = () => {
             </div>
 
             <div className="aspect-video rounded-xl overflow-hidden border border-border">
+              <MapaComPrivacidade>
               <iframe
                 title={`Mapa de ${ong.name}`}
                 src={`https://www.google.com/maps?q=${mapsQuery}&output=embed`}
                 className="h-full w-full"
                 loading="lazy"
               />
+              </MapaComPrivacidade>
             </div>
 
             <div className="grid grid-cols-2 gap-2 pt-1">

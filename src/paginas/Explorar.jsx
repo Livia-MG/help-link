@@ -18,6 +18,7 @@ import { Estrutura } from "../componentes/Estrutura";
 import { useCatalogo } from "../hooks/useCatalogo";
 import { EstadoConsulta } from "../componentes/EstadoConsulta";
 import { cn } from "../lib/utilitarios";
+import { MapaComPrivacidade } from "../componentes/MapaComPrivacidade";
 
 const BARRETOS_CENTER = [-20.557, -48.567];
 
@@ -126,6 +127,7 @@ const ExploreMap = ({ filteredOngs, hoveredId, selectedId, onSelect }) => {
 
   return (
     <div className="sticky top-20 h-[520px] overflow-hidden rounded-2xl border border-border bg-muted shadow-card lg:h-[calc(100vh-7rem)]">
+      <MapaComPrivacidade>
       <MapContainer center={BARRETOS_CENTER} zoom={13} scrollWheelZoom className="h-full w-full">
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -142,6 +144,7 @@ const ExploreMap = ({ filteredOngs, hoveredId, selectedId, onSelect }) => {
           />
         ))}
       </MapContainer>
+      </MapaComPrivacidade>
     </div>
   );
 };
