@@ -208,25 +208,6 @@ export const ongs = [
     needs: ["Alimentos não perecíveis", "Roupas", "Voluntários", "Doação financeira"],
   },
   {
-    id: "rotary-club",
-    name: "Rotary Club de Barretos",
-    shortDescription: "Projetos sociais e ações comunitárias.",
-    description:
-      "Organização internacional presente em Barretos que desenvolve projetos sociais voltados à educação, saúde e combate à vulnerabilidade social. Atua na realização de campanhas, parcerias e ações comunitárias que beneficiam diferentes grupos da população, sempre com foco no serviço voluntário e impacto social positivo.",
-    categories: ["pessoas"],
-    address: "Avenida 9, 1069, Sala 4 - Fortaleza, Barretos/SP",
-    neighborhood: "Centro",
-    coordinates: {
-      lat: -20.5574,
-      lng: -48.5654,
-    },
-    acceptsVolunteers: true,
-    issuesCertificate: false,
-    phone: "(17) 98100-4302",
-    image: "https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=900&q=80",
-    needs: ["Alimentos não perecíveis", "Voluntários", "Doação financeira"],
-  },
-  {
     id: "educandário-sagrados-corações",
     name: "Educandário Sagrados Corações",
     shortDescription: "Atendimento a crianças em vulnerabilidade social.",
