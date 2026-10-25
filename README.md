@@ -7,6 +7,8 @@ A área administrativa está em `/admin/login`. Veja [configuração, primeiro a
 
 Visitantes podem solicitar a inclusão de uma ONG em `/solicitar-instituicao`. A equipe analisa em `/admin/solicitacoes` e o resultado é enviado por e-mail. Veja [fluxo, migration e notificações](docs/solicitacoes-ongs.md).
 
+O protótipo acadêmico também possui termos de uso, políticas de privacidade/cookies e preferências que bloqueiam mapas externos até autorização. Veja [funcionamento e responsabilidades da equipe](docs/privacidade-e-termos.md).
+
 Veja a [auditoria da conexão e das variáveis de ambiente](docs/auditoria-supabase.md) para os resultados da verificação remota de 25/10/2026 e a lista de variáveis necessárias. A validação final confirmou a integração das telas e a remoção dos dados estáticos.
 
 ## Desenvolvimento
