@@ -10,6 +10,7 @@ const links = [
   { to: "/instituicoes", label: "Instituições" },
   { to: "/explorar", label: "Explorar" },
   { to: "/contato", label: "Contato" },
+  { to: "/sos", label: "SOS" },
 ];
 
 export const BarraNavegacao = () => {
