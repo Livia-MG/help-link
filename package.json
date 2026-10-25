@@ -4,6 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "admin:criar": "node server/criarPrimeiroAdministrador.js",
+    "test:integracao": "node server/verificarAdministracao.js",
+    "test:solicitacoes": "node server/verificarSolicitacoes.js",
+    "test": "node --test server/*.test.js",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "vite",
     "dev:server": "node --watch server/servidor.js",
@@ -12,6 +16,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.118.0",
     "@tailwindcss/vite": "^4.2.4",
     "clsx": "^2.1.1",
     "cors": "^2.8.6",
@@ -31,6 +36,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@electric-sql/pglite": "^0.5.11",
     "@eslint/js": "^10.0.1",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
