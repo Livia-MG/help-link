@@ -4,6 +4,7 @@ import Inicio from './paginas/Inicio';
 import Sobre from './paginas/Sobre';
 import Instituicoes from './paginas/Instituicoes';
 import DetalhesOng from './paginas/DetalhesOng';
+import Explorar from './paginas/Explorar';
 import NaoEncontrado from './paginas/NaoEncontrado';
 
 function Aplicacao() {
@@ -16,6 +17,7 @@ function Aplicacao() {
         <Route path="/sobre" element={<Sobre />} />
         <Route path="/instituicoes" element={<Instituicoes />} />
         <Route path="/instituicoes/:id" element={<DetalhesOng />} />
+        <Route path="/explorar" element={<Explorar />} />
         <Route path="*" element={<NaoEncontrado />} />
       </Routes>
     </BrowserRouter>
