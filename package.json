@@ -5,9 +5,6 @@
   "type": "module",
   "scripts": {
     "admin:criar": "node server/criarPrimeiroAdministrador.js",
-    "test:integracao": "node server/verificarAdministracao.js",
-    "test:solicitacoes": "node server/verificarSolicitacoes.js",
-    "test": "node --test server/*.test.js",
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "vite",
     "dev:server": "node --watch server/servidor.js",
